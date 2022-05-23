@@ -1,0 +1,15 @@
+ego:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 100
+
+  # Wheels Motors Controllers ---------------------------------------
+  left_wheel_controller:
+    type: effort_controllers/JointEffortController
+    joint: L_joint_baseW
+    pid: {p: 1000.0, i: 0.1, d: 1}
+  right_wheel_controller:
+    type: effort_controllers/JointEffortController
+    joint: R_joint_baseW
+    pid: {p: 1000.0, i: 0.1, d: 1}

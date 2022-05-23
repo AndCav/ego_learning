@@ -1,0 +1,413 @@
+<?xml version="1.0"?>
+<sdf version='1.7'>
+
+  <model name='ego_robot'>
+        <link name='base_link'>
+          <inertial>
+            <pose>0.00331 0.00112 0.289035 0 -0 0</pose>
+            <mass>22.17</mass>
+            <inertia>
+              <ixx>3.12009</ixx>
+              <ixy>-0.000474734</ixy>
+              <ixz>-0.0540834</ixz>
+              <iyy>2.96602</iyy>
+              <iyz>0.00489439</iyz>
+              <izz>1.22593</izz>
+            </inertia>
+          </inertial>
+          <collision name='base_link_collision'>
+            <pose>0 0 0 1.57075 0 -1.57</pose>
+            <geometry>
+              <mesh>
+                <scale>0.001 0.001 0.001</scale>
+                <uri>/home/cp/RL_ws/src/AlterEgo/ego_description/meshes/AlterEgo_v2.0/body_simplified.stl</uri>
+              </mesh>
+            </geometry>
+            <surface>
+              <contact>
+                <ode/>
+              </contact>
+              <friction>
+                <ode/>
+                <torsional>
+                  <ode/>
+                </torsional>
+              </friction>
+              <bounce/>
+            </surface>
+            <max_contacts>10</max_contacts>
+          </collision>
+          <collision name='base_link_fixed_joint_lump__neck_collision_1'>
+            <pose>0 0 0.6985 0 -0 0</pose>
+            <geometry>
+              <box>
+                <size>0.01 0.01 0.01</size>
+              </box>
+            </geometry>
+            <max_contacts>10</max_contacts>
+            <surface>
+              <contact>
+                <ode/>
+              </contact>
+              <bounce/>
+              <friction>
+                <torsional>
+                  <ode/>
+                </torsional>
+                <ode/>
+              </friction>
+            </surface>
+          </collision>
+          <collision name='base_link_fixed_joint_lump__head_collision_2'>
+            <pose>0.013885 0 0.794344 0 -0.7 0</pose>
+            <geometry>
+              <sphere>
+                <radius>0.075</radius>
+              </sphere>
+            </geometry>
+            <surface>
+              <contact>
+                <ode/>
+              </contact>
+              <friction>
+                <ode/>
+                <torsional>
+                  <ode/>
+                </torsional>
+              </friction>
+              <bounce/>
+            </surface>
+            <max_contacts>10</max_contacts>
+          </collision>
+          <collision name='base_link_fixed_joint_lump__laser_collision_3'>
+            <pose>0 0 0.116 1.5707 0 -1.57319</pose>
+            <geometry>
+              <mesh>
+                <scale>0.001 0.001 0.001</scale>
+                <uri>/home/cp/RL_ws/src/AlterEgo/ego_description/meshes/rplidar.dae</uri>
+              </mesh>
+            </geometry>
+            <surface>
+              <contact>
+                <ode/>
+              </contact>
+              <friction>
+                <ode/>
+                <torsional>
+                  <ode/>
+                </torsional>
+              </friction>
+              <bounce/>
+            </surface>
+            <max_contacts>10</max_contacts>
+          </collision>
+          <visual name='base_link_visual'>
+            <pose>0 0 0 1.57075 0 -1.57</pose>
+            <geometry>
+              <mesh>
+                <scale>0.001 0.001 0.001</scale>
+                <uri>/home/cp/RL_ws/src/AlterEgo/ego_description/meshes/AlterEgo_v2.0/body_simplified.stl</uri>
+              </mesh>
+            </geometry>
+            <material>
+              <script>
+                <name>Gazebo/SkyBlue</name>
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+              </script>
+            </material>
+          </visual>
+          <visual name='base_link_fixed_joint_lump__neck_visual_1'>
+            <pose>0 0 0.6985 3.14 -0 -1.57075</pose>
+            <geometry>
+              <mesh>
+                <scale>0.001 0.001 0.001</scale>
+                <uri>/home/cp/RL_ws/src/AlterEgo/ego_description/meshes/qb_c_flange.stl</uri>
+              </mesh>
+            </geometry>
+          </visual>
+          <visual name='base_link_fixed_joint_lump__head_visual_2'>
+            <pose>0 0 0.7565 0 0.007 0</pose>
+            <geometry>
+              <mesh>
+                <scale>0.001 0.001 0.001</scale>
+                <uri>/home/cp/RL_ws/src/AlterEgo/ego_description/meshes/AlterEgo_v2.0/head.stl</uri>
+              </mesh>
+            </geometry>
+            <material>
+              <script>
+                <name>Gazebo/Grey</name>
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+              </script>
+            </material>
+          </visual>
+          <visual name='base_link_fixed_joint_lump__laser_visual_3'>
+            <pose>0 0 0.116 1.5707 0 -1.57319</pose>
+            <geometry>
+              <mesh>
+                <scale>0.001 0.001 0.001</scale>
+                <uri>/home/cp/RL_ws/src/AlterEgo/ego_description/meshes/rplidar.dae</uri>
+              </mesh>
+            </geometry>
+            <material>
+              <script>
+                <name>Gazebo/Black</name>
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+              </script>
+            </material>
+          </visual>
+          <self_collide>1</self_collide>
+          <sensor name='head_rplidar_sensor' type='ray'>
+            <visualize>0</visualize>
+            <update_rate>40</update_rate>
+            <ray>
+              <scan>
+                <horizontal>
+                  <samples>720</samples>
+                  <resolution>1</resolution>
+                  <min_angle>-3.14159</min_angle>
+                  <max_angle>3.14159</max_angle>
+                </horizontal>
+                <vertical>
+                  <samples>1</samples>
+                  <min_angle>0</min_angle>
+                  <max_angle>0</max_angle>
+                </vertical>
+              </scan>
+              <range>
+                <min>0.2</min>
+                <max>12</max>
+                <resolution>0.01</resolution>
+              </range>
+              <noise>
+                <type>gaussian</type>
+                <mean>0</mean>
+                <stddev>0.01</stddev>
+              </noise>
+            </ray>
+            <plugin name='gazebo_ros_head_rplidar_controller' filename='libgazebo_ros_laser.so'>
+              <topicName>scan</topicName>
+              <frameName>laser</frameName>
+              <robotNamespace>/</robotNamespace>
+            </plugin>
+            <pose>0 0 0.116 0 -0 0</pose>
+          </sensor>
+          <enable_wind>0</enable_wind>
+          <kinematic>0</kinematic>
+        </link>
+        <joint name='L_joint_baseW' type='revolute'>
+          <pose relative_to='base_link'>0 0.275 0 0 -0 0</pose>
+          <parent>base_link</parent>
+          <child>wheel_L</child>
+          <axis>
+            <xyz>0 1 0</xyz>
+            <limit>
+              <effort>22</effort>
+              <velocity>1e+16</velocity>
+              <lower>-1e+16</lower>
+              <upper>1e+16</upper>
+            </limit>
+            <dynamics>
+              <damping>5.2</damping>
+              <friction>3</friction>
+              <spring_reference>0</spring_reference>
+              <spring_stiffness>0</spring_stiffness>
+            </dynamics>
+          </axis>
+        </joint>
+        <link name='wheel_L'>
+          <pose relative_to='L_joint_baseW'>0 0 0 0 -0 0</pose>
+          <inertial>
+            <pose>0 0 0 0 -0 0</pose>
+            <mass>1.22</mass>
+            <inertia>
+              <ixx>0.00321</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>0.00531</iyy>
+              <iyz>0</iyz>
+              <izz>0.00321</izz>
+            </inertia>
+          </inertial>
+          <collision name='wheel_L_collision'>
+            <pose>0 0 0 1.57075 -0 0</pose>
+            <geometry>
+              <cylinder>
+                <length>0.07</length>
+                <radius>0.13</radius>
+              </cylinder>
+            </geometry>
+            <surface>
+              <contact>
+                <ode>
+                  <kp>1e+06</kp>
+                  <kd>1</kd>
+                </ode>
+              </contact>
+              <friction>
+                <ode>
+                  <mu>1</mu>
+                  <mu2>1</mu2>
+                </ode>
+                <torsional>
+                  <ode/>
+                </torsional>
+              </friction>
+              <bounce/>
+            </surface>
+            <max_contacts>10</max_contacts>
+          </collision>
+          <visual name='wheel_L_visual'>
+            <pose>0 0 0 1.57075 -0 0</pose>
+            <geometry>
+              <mesh>
+                <scale>0.001 0.001 0.001</scale>
+                <uri>/home/cp/RL_ws/src/AlterEgo/ego_description/meshes/Ego_wheel.stl</uri>
+              </mesh>
+            </geometry>
+            <material>
+              <script>
+                <name>Gazebo/Grey</name>
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+              </script>
+            </material>
+          </visual>
+          <self_collide>1</self_collide>
+          <enable_wind>0</enable_wind>
+          <kinematic>0</kinematic>
+        </link>
+        <joint name='R_joint_baseW' type='revolute'>
+          <pose relative_to='base_link'>0 -0.275 0 0 -0 0</pose>
+          <parent>base_link</parent>
+          <child>wheel_R</child>
+          <axis>
+            <xyz>0 1 0</xyz>
+            <limit>
+              <effort>22</effort>
+              <velocity>1e+16</velocity>
+              <lower>-1e+16</lower>
+              <upper>1e+16</upper>
+            </limit>
+            <dynamics>
+              <damping>5.2</damping>
+              <friction>3</friction>
+              <spring_reference>0</spring_reference>
+              <spring_stiffness>0</spring_stiffness>
+            </dynamics>
+          </axis>
+        </joint>
+        <link name='wheel_R'>
+          <pose relative_to='R_joint_baseW'>0 0 0 0 -0 0</pose>
+          <inertial>
+            <pose>0 0 0 0 -0 0</pose>
+            <mass>1.22</mass>
+            <inertia>
+              <ixx>0.00321</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>0.00531</iyy>
+              <iyz>0</iyz>
+              <izz>0.00321</izz>
+            </inertia>
+          </inertial>
+          <collision name='wheel_R_collision'>
+            <pose>0 0 0 1.57075 -0 0</pose>
+            <geometry>
+              <cylinder>
+                <length>0.07</length>
+                <radius>0.13</radius>
+              </cylinder>
+            </geometry>
+            <surface>
+              <contact>
+                <ode>
+                  <kp>1e+06</kp>
+                  <kd>1</kd>
+                </ode>
+              </contact>
+              <friction>
+                <ode>
+                  <mu>1</mu>
+                  <mu2>1</mu2>
+                </ode>
+                <torsional>
+                  <ode/>
+                </torsional>
+              </friction>
+              <bounce/>
+            </surface>
+            <max_contacts>10</max_contacts>
+          </collision>
+          <visual name='wheel_R_visual'>
+            <pose>0 0 0 1.57075 -0 0</pose>
+            <geometry>
+              <mesh>
+                <scale>0.001 0.001 0.001</scale>
+                <uri>/home/cp/RL_ws/src/AlterEgo/ego_description/meshes/Ego_wheel.stl</uri>
+              </mesh>
+            </geometry>
+            <material>
+              <script>
+                <name>Gazebo/Grey</name>
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+              </script>
+            </material>
+          </visual>
+          <self_collide>1</self_collide>
+          <enable_wind>0</enable_wind>
+          <kinematic>0</kinematic>
+        </link>
+        <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
+          <robotNamespace>/ego</robotNamespace>
+          <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+          <legacyModeNS>1</legacyModeNS>
+        </plugin>
+        <static>0</static>
+        <plugin name='imu_plugin' filename='libgazebo_ros_imu.so'>
+          <alwaysOn>1</alwaysOn>
+          <topicName>imu</topicName>
+          <serviceName>imu_service</serviceName>
+          <gaussianNoise>0.0</gaussianNoise>
+          <rpyOffsets>0 0 0</rpyOffsets>
+          <accelDrift>0.0 0.0 0.0</accelDrift>
+          <accelGaussianNoise>0.0 0.0 0.0</accelGaussianNoise>
+          <rateDrift>0.0 0.0 0.0</rateDrift>
+          <rateGaussianNoise>0.00 0.00 0.00</rateGaussianNoise>
+          <headingDrift>0.0</headingDrift>
+          <headingGaussianNoise>0.00</headingGaussianNoise>
+          <updateRate>00</updateRate>
+          <robotNamespace>/</robotNamespace>
+          <bodyName>base_link</bodyName>
+          <frameName>base_link</frameName>
+          <xyzOffset>0 -0.205 -0.0455</xyzOffset>
+          <rpyOffset>0 -0 0</rpyOffset>
+        </plugin>
+        <pose>0 0 0.13 0 -0 0</pose>
+      </model>
+      <state world_name='default'>
+        <sim_time>0 0</sim_time>
+        <real_time>0 0</real_time>
+        <wall_time>1645184060 199685797</wall_time>
+        <iterations>0</iterations>
+        <model name='ego_robot'>
+          <pose>0 0 0.13 0 -0 0</pose>
+          <scale>1 1 1</scale>
+          <link name='base_link'>
+            <pose>0 0 0.13 0 -0 0</pose>
+            <velocity>0 0 0 0 -0 0</velocity>
+            <acceleration>0 0 0 0 -0 0</acceleration>
+            <wrench>0 0 0 0 -0 0</wrench>
+          </link>
+          <link name='wheel_L'>
+            <pose>0 0.275 0.13 0 -0 0</pose>
+            <velocity>0 0 0 0 -0 0</velocity>
+            <acceleration>0 0 0 0 -0 0</acceleration>
+            <wrench>0 0 0 0 -0 0</wrench>
+          </link>
+          <link name='wheel_R'>
+            <pose>0 -0.275 0.13 0 -0 0</pose>
+            <velocity>0 0 0 0 -0 0</velocity>
+            <acceleration>0 0 0 0 -0 0</acceleration>
+            <wrench>0 0 0 0 -0 0</wrench>
+          </link>
+  </model>  
+</sdf>

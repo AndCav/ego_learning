@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="AlterEgo_version" default="2" />
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find ego_description)/urdf/ego$(arg AlterEgo_version)_robot_no_arms.urdf.xacro'" />
+
+
+  <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model ego_robot -param robot_description -x -0.0 -y 0.0 -z 0.13 -J wheel_L 0.0 -J wheel_R 0.0" />
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <!-- <rosparam file="$(find ego_description)/config/ego_motors.yaml" command="load" /> -->
+  <!-- 
+  <rosparam file="$(find ego_learning)/config/ego_motors.yaml" command="load" /> -->
+
+  <!-- load the controllers 
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/ego" args="joint_state_controller left_wheel_controller right_wheel_controller ">-->
+    <!-- <param name=""
+  </node> -->
+</launch>
