@@ -111,7 +111,7 @@ class ControllersConnection():
         if result_off_ok:
             # rospy.logdebug("Activating Controllers")
 
-            #rospy.wait_for_service("/ego/controller_manager/unload_controller")
+            rospy.wait_for_service("/ego/controller_manager/unload_controller")
             unloadreq = UnloadControllerRequest()
             rospy.sleep(1)
             for o in self.controllers_list:

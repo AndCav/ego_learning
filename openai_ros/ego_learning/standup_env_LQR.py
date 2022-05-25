@@ -73,7 +73,7 @@ class StandupTaskEnv(ego_env_LQR.egoRobotEnv_LQR):
         self.epoch_steps = rospy.get_param('/ego/epoch_steps')
         self.running_step = rospy.get_param('/ego/running_step')
         self.W_pitch = 1.5
-        self.W_pitchRate = 5.0
+        self.W_pitchRate = 15.0
         self.W_yaw = 0.12
         self.W_yawRate = 0.12
         self.W_for = 1

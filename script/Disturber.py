@@ -49,8 +49,8 @@ class Disturbance():
 
     def newFeed(self, data):
         randomicValue = np.sign(random.uniform(-1, 1)) * \
-            random.uniform(low=800.0, high=1500.0, size=None)
-        newDuration = int(random.uniform(low=0.0, high=3.0, size=None))
+            random.uniform(low=2800.0, high=3000.0, size=None)
+        newDuration = int(random.uniform(low=0.0, high=1.0, size=None))
         rosDur = rospy.Duration(newDuration)
 
         wrench = geometry_msgs.msg.Wrench(force=geometry_msgs.msg.Vector3(x=randomicValue,
@@ -64,6 +64,10 @@ class Disturbance():
         try:
             apply_body_wrench = rospy.ServiceProxy(
                 '/gazebo/apply_body_wrench', ApplyBodyWrench)
+
+            rospy.sleep(3)
+
+
             apply_body_wrench(self.body_name, self.reference_frame,
                               self.reference_point, wrench, start_time, rosDur)
             self.newSim = False

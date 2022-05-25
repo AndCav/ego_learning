@@ -57,8 +57,8 @@
   <!-- Testing LQR Controller -->
   <param name="AlterEgoVersion" value="$(arg AlterEgo_version)" />
   <node pkg="lqr_controller" name="lqr_control" type="lqr_controller" output="screen" />
-  <node pkg="arms_inv_kin_controller" name="inv_kin_gravity_comp" type="inv_kin_gravity_comp_node" output="screen" />
-  <!-- <node pkg="lqr_controller" name="pitch_loop" type="pitch_loop" output="screen"/> -->
+  <!-- <node pkg="arms_inv_kin_controller" name="inv_kin_gravity_comp" type="inv_kin_gravity_comp_node" output="screen" /> -->
+  <node pkg="lqr_controller" name="pitch_loop" type="pitch_loop" output="screen" />
 
 
 </launch>

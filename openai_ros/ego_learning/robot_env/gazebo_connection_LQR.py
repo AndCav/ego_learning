@@ -157,7 +157,7 @@ class GazeboConnection():
             model_msg = gms("ego_robot","")
             count+=1
             if count ==5:
-                self.spawn_model.call(self.spawn_req)
+                self.spawn_model.call(self.spawn_req,)
                 count = 0
         
 

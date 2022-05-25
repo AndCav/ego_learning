@@ -14,7 +14,7 @@ from ego_learning.msg import RLExperimentInfo
 
 class RobotGazeboEnv(gym.GoalEnv):
 
-    def __init__(self, n, robot_name_spaces, controllers_list, reset_controls, start_init_physics_parameters=True, reset_world_or_sim="SIMULATION"):
+    def __init__(self, n, robot_name_spaces, controllers_list, reset_controls, start_init_physics_parameters=True, reset_world_or_sim="WORLD"):
 
         # To reset Simulations
         rospy.logdebug("START init RobotGazeboEnv")
@@ -23,7 +23,7 @@ class RobotGazeboEnv(gym.GoalEnv):
         self.controllers_objects = [ControllersConnection(namespace=robot_name_spaces[i],
                                                           controllers_list=controllers_list)
                                     for i in range(n)]
-        self.reset_controls = reset_controls
+        self.reset_controls = True
         self.seed()
 
         # Set up ROS related variables
@@ -148,30 +148,32 @@ class RobotGazeboEnv(gym.GoalEnv):
             gazebo.unpauseSim()
             controller.switch_on()
         """
-        # rospy.logdebug("RESET SIM START")
+        rospy.logdebug("RESET SIM START")
         if self.reset_controls:
             # rospy.logdebug("RESET CONTROLLERS")
             self.gazebo.unpauseSim()
-
+            #print("switching off")
             self.controllers_objects[0].switch_off() #apparentemente è inutile perchè una volta eliminato il robot i controllori muoiono
 
-            self.gazebo.deleteModel_()
+            #self.gazebo.deleteModel_()
 
-            #self.gazebo.resetSim()
+            self.gazebo.resetSim()
 
-            self.gazebo.respawn()
-            self.gazebo.pauseSim()
-            rospy.sleep(1)
+            #self.gazebo.respawn()
+            #rospy.sleep(1)
             self.controllers_objects[0].load_controller()
-            rospy.sleep(1)
+            #print("loading")
+            self.gazebo.pauseSim()
+            #rospy.sleep(1)
             rospy.wait_for_service("/ego/controller_manager/switch_controller")
             self.gazebo.unpauseSim()
             
             self.controllers_objects[0].switch_on()
+            #print("switching on")
            # self.left_pub.publish(0)
            # self.right_pub.publish(0.0)
             
-            self._check_all_systems_ready()
+            #self._check_all_systems_ready()
             
             self.gazebo.pauseSim()
 
@@ -182,6 +184,7 @@ class RobotGazeboEnv(gym.GoalEnv):
             self.gazebo.unpauseSim()
             self._check_all_systems_ready()
             self.gazebo.pauseSim()
+        #self.gazebo.resetSim()
 
         # rospy.logdebug("RESET SIM END")
         return True
