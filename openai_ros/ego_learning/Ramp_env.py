@@ -31,7 +31,7 @@ def LoadYamlFileParamsTest(rospackage_name, rel_path_from_package_to_file, yaml_
         rosparam.upload_params(ns, params)
 
 
-class StandupTaskEnv(ego_env_LQR.egoRobotEnv_LQR):
+class RampTaskEnv(ego_env_LQR.egoRobotEnv_LQR):
 
     # high = numpy.array([np.inf,
     #                     np.inf,
@@ -181,7 +181,7 @@ class StandupTaskEnv(ego_env_LQR.egoRobotEnv_LQR):
         kfeed.data = [-8.0+float(8*action.flatten()[0]), -909.8+float(909*action.flatten()[1]), -67+float(
             67*action.flatten()[2]), -168+float(168*action.flatten()[3]),  40.2236+float(40*action.flatten()[4]), 50.2114+float(50*action.flatten()[5])]
         # kfeed.data = [-8.0,   -909.8, -67, -168,  40.2236,
-        #               50.2114, -8.0,   -909.8, -67, -168, -40.2236, -50.2114]
+        #              50.2114, -8.0,   -909.8, -67, -168, -40.2236, -50.2114]
         self.KfeedPub.publish(kfeed)
         # rospy.set_param('/ego/k_feed', [float(80*action[0]), float(500*action[1]),
         #                 float(100*action[2]), float(250*action[3]), float(100*action[4]), float(100*action[5])])

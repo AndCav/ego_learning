@@ -10,7 +10,7 @@
     </include>
 
     <physics type="ode">
-      <real_time_update_rate>3000.000</real_time_update_rate>
+      <real_time_update_rate>0</real_time_update_rate>
       <ode>
         <solver>
           <thread_position_correction>1</thread_position_correction>
